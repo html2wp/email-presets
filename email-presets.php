@@ -84,5 +84,5 @@ function ep_register_custom_post_type() {
 
 function ep_mail( $slug, $to, $subject_args = array(), $message_args = array(), $headers = '', $attachments = array() ) {
 	$email_preset = get_page_by_path( $slug, 'OBJECT', 'email_preset' );
-	return wp_mail( $to, vsprintf( get_post_meta( $email_preset->ID, 'ep_email_subject', true ), $subject_args ), vsprintf( $email_preset->post_content, $message_args ), $headers, $attachments );
+	return wp_mail( $to, vsprintf( get_post_meta( $email_preset->ID, 'ep_email_subject', true ), $subject_args ), vsprintf( wpautop( $email_preset->post_content ), $message_args ), $headers, $attachments );
 }
